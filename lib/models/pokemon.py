@@ -16,6 +16,12 @@ class Pokemon:
         self.trainer = trainer
         #Pokemon.all.append(self)
 
+    def __repr__(self):
+        return(
+            f"<{self.species}. Nickname: {self.nickname}, Level: {self.level}, " +
+            f"Trainer Name: {self.trainer}>"
+        )
+
     @property
     def nickname(self):
         return self._nickname

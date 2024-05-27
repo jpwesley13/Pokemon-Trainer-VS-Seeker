@@ -45,3 +45,35 @@ class Trainer:
             self._badges = badges
         else:
             raise ValueError("Please enter an integer between 0 and 8 for the trainer's badge count")
+        
+    @classmethod
+    def create_table(cls):
+        sql = """
+            CREATE TABLE IF NOT EXISTS trainers (
+            id INTEGER PRIMARY KEY,
+            name TEXT,
+            hometown TEXT,
+            badges INTEGER)
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    @classmethod
+    def drop_table(cls):
+        sql = """
+            DROP TABLE IF EXISTS departments;
+        """
+        CURSOR.execute(sql)
+        CONN.commit()
+
+    def save(self):
+        sql = """
+            INSERT INTO trainers (name, hometown, badges)
+            VALUES (?, ?, ?)
+        """
+
+        CURSOR.execute(sql, (self.name, self.hometown, self.badges))
+        CONN.commit()
+
+        self.id = CURSOR.lastrowid
+        type(self).all[self.id] = self
