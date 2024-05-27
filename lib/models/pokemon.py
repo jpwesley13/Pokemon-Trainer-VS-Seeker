@@ -1,7 +1,7 @@
 import json
 import ipdb
-from models.__init__ import CURSOR, CONN
-from models.trainer import Trainer
+from __init__ import CURSOR, CONN
+from trainer import Trainer
 
 with open("lib/kanto.json") as file:
     kanto_list = json.load(file)
@@ -64,5 +64,6 @@ class Pokemon:
             self._trainer = trainer
         else:
             raise ValueError("trainer must reference an existing Trainer name in the database")
+            
 
 ipdb.set_trace()

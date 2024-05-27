@@ -1,4 +1,5 @@
-from models.__init__ import CURSOR, CONN
+from __init__ import CURSOR, CONN
+import ipdb
 
 class Trainer:
 
@@ -103,3 +104,29 @@ class Trainer:
 
         del type(self).all[self.id]
         self.id = None
+
+    @classmethod
+    def instance_from_db(cls, row):
+        trainer = cls.all.get(row[0])
+        if trainer:
+            trainer.name = row[1]
+            trainer.hometown = row[2]
+            trainer.badges = row[3]
+        else:
+            trainer = cls(row[1], row[2], row[3])
+            trainer.id = row[0]
+            cls.all[trainer.id] = trainer
+        return trainer
+    
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM trainers
+        """
+
+        rows = CURSOR.execute(sql).fetchall()
+
+        return [cls.instance_from_db(row) for row in rows]
+    
+ipdb.set_trace()
