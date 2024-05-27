@@ -116,4 +116,52 @@ class Pokemon:
         del type(self).all[self.id]
         self.id = None
 
+    @classmethod
+    def create(cls, nickname, species, level, trainer):
+        pokemon = cls(nickname, species, level, trainer)
+        pokemon.save
+        return pokemon
+    
+    @classmethod
+    def instance_from_db(cls, row):
+        pokemon = cls.all.get(row[0])
+        if pokemon:
+            pokemon.nickname = row[1]
+            pokemon.species = row[2]
+            pokemon.level = row[3]
+            pokemon.trainer = row[4]
+        else:
+            pokemon = cls(row[1], row[2], row[3], row[4])
+            pokemon.id = row[0]
+            cls.all[pokemon.id] = pokemon
+        return pokemon
+    
+    @classmethod
+    def get_all(cls):
+        sql = """
+            SELECT *
+            FROM pokemons
+        """
+        rows = CURSOR.execute(sql).fetchall()
+        return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT *
+            FROM pokemons
+            WHERE id = ?
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+    
+    @classmethod
+    def find_by_nickname(cls, nickname):
+        sql = """
+            SELECT *
+            FROM pokemons
+            WHERE nickname is ?
+        """
+        row = CURSOR.execute(sql, (nickname,)).fetchone()
+        return cls.instance_from_db(row) if row else None
     
