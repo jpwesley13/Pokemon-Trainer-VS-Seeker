@@ -77,3 +77,29 @@ class Trainer:
 
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
+
+    @classmethod
+    def create(cls, name, hometown, badges):
+        trainer = cls(name, hometown, badges)
+        trainer.save()
+        return trainer
+    
+    def update(self):
+        sql = """
+            UPDATE trainers
+            SET name = ?, hometown = ?, badges = ?
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.name, self.hometown, self.badges, self.id))
+        CONN.commit()
+
+    def delete(self):
+        sql = """
+            DELETE FROM trainers
+            WHERE id = ?
+        """
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        del type(self).all[self.id]
+        self.id = None
