@@ -124,9 +124,38 @@ class Trainer:
             SELECT *
             FROM trainers
         """
-
         rows = CURSOR.execute(sql).fetchall()
-
         return [cls.instance_from_db(row) for row in rows]
+    
+    @classmethod
+    def find_by_id(cls, id):
+        sql = """
+            SELECT *
+            FROM trainers
+            WHERE id = ?
+        """
+        row = CURSOR.execute(sql, (id,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+    
+    @classmethod
+    def find_by_name(cls, name):
+        sql = """
+            SELECT *
+            FROM trainers
+            WHERE name is ?
+        """
+        row = CURSOR.execute(sql, (name,)).fetchone()
+        return cls.instance_from_db(row) if row else None
+    
+    def pokemons(self):
+        from pokemon import Pokemon
+        sql = """
+            SELECT *
+            FROM pokemons
+            WHERE trainer = ?
+        """
+        CURSOR.execute(sql, (self.name,),)
+        rows = CURSOR.fetchall()
+        return [Pokemon.instance_from_db(row) for row in rows]
     
 ipdb.set_trace()
