@@ -1,4 +1,4 @@
-from __init__ import CURSOR, CONN
+from models.__init__ import CURSOR, CONN
 
 class Trainer:
 
@@ -147,7 +147,7 @@ class Trainer:
         return cls.instance_from_db(row) if row else None
     
     def pokemons(self):
-        from pokemon import Pokemon
+        from models.pokemon import Pokemon
         sql = """
             SELECT *
             FROM pokemons

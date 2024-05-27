@@ -1,6 +1,6 @@
 import json
-from __init__ import CURSOR, CONN
-from trainer import Trainer
+from models.__init__ import CURSOR, CONN
+from models.trainer import Trainer
 
 with open("lib/kanto.json") as file:
     kanto_list = json.load(file)
