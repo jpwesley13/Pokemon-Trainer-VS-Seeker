@@ -1,5 +1,4 @@
 from __init__ import CURSOR, CONN
-import ipdb
 
 class Trainer:
 
@@ -157,5 +156,3 @@ class Trainer:
         CURSOR.execute(sql, (self.name,),)
         rows = CURSOR.fetchall()
         return [Pokemon.instance_from_db(row) for row in rows]
-    
-ipdb.set_trace()
