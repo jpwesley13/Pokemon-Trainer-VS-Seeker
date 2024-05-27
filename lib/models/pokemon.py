@@ -1,18 +1,19 @@
 import json
 import ipdb
+from models.__init__ import CURSOR, CONN
 
 with open("lib/kanto.json") as file:
     kanto_list = json.load(file)
 
 class Pokemon:
-    all = []
+    all = {}
 
     def __init__(self, nickname, species, level, trainer):
         self.nickname = nickname
         self.species = species
         self.level = level
         self.trainer = trainer
-        Pokemon.all.append(self)
+        #Pokemon.all.append(self)
 
     @property
     def species(self):
