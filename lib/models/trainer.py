@@ -61,7 +61,7 @@ class Trainer:
     @classmethod
     def drop_table(cls):
         sql = """
-            DROP TABLE IF EXISTS departments;
+            DROP TABLE IF EXISTS trainers;
         """
         CURSOR.execute(sql)
         CONN.commit()

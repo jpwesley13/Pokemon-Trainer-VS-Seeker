@@ -28,7 +28,7 @@ class Pokemon:
     
     @nickname.setter
     def nickname(self, nickname):
-        if isinstance(nickname, str) and not hasattr(self, "nickname") and len(nickname):
+        if isinstance(nickname, str) and len(nickname):
             self._nickname = nickname
         else:
             raise ValueError("Please enter a non-empty string for the Pokemon's nickname")
@@ -49,7 +49,7 @@ class Pokemon:
     
     @level.setter
     def level(self, level):
-        if isinstance(level, str) and 1 <= level <= 100:
+        if isinstance(level, int) and 1 <= level <= 100:
             self._level = level
         else:
             raise ValueError("Please enter an integer between 1 and 100 for the Pokemon's level")
@@ -60,7 +60,7 @@ class Pokemon:
     
     @trainer.setter
     def trainer(self, trainer):
-        if isinstance(trainer, str) and Trainer.find_by_name(trainer):
+        if type(trainer) is str and Trainer.find_by_name(trainer):
             self._trainer = trainer
         else:
             raise ValueError("trainer must reference an existing Trainer name in the database")
@@ -119,7 +119,7 @@ class Pokemon:
     @classmethod
     def create(cls, nickname, species, level, trainer):
         pokemon = cls(nickname, species, level, trainer)
-        pokemon.save
+        pokemon.save()
         return pokemon
     
     @classmethod
