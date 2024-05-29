@@ -9,6 +9,6 @@ def exit_program():
 
 def all_trainers():
     trainers = Trainer.get_all()
-    for trainer in trainers:
-        print(trainer)
-
+    print("Registered Trainers:")
+    for index, trainer in enumerate(trainers, start=1):
+        print(f"{index}. {trainer}")
