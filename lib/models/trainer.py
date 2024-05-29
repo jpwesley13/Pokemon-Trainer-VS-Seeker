@@ -11,7 +11,10 @@ class Trainer:
         self.badges = badges
 
     def __repr__(self):
-        return f"<Trainer {self.id}: {self.name} from {self.hometown}, {self.badges} badge(s)>"
+        return f"{self.name}"
+    
+    def details(self):
+        return f"{self.name} from {self.hometown}. Currently has {self.badges} badge(s) and {len(self.pokemons())} Pokemon!"
     
     @property
     def name(self):

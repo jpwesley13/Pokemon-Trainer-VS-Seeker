@@ -2,7 +2,9 @@
 
 from helpers import (
     exit_program,
-    all_trainers
+    all_trainers,
+    register_trainer,
+    trainer_details
 )
 
 
@@ -39,12 +41,13 @@ def trainers_menu(trainers):
         if choice.isdigit():
             trainer_id = int(choice)
             if trainer_id > 0 and trainer_id <= len(trainers):
-                selected_trainer = trainers[trainer_id - 1]
-                print(f"\nAdditional details for {selected_trainer}:")
+                # selected_trainer = trainers[trainer_id - 1]
+                trainer_details(trainer_id)
+                all_trainers()
             else:
                 print("Invalid trainer ID")
         elif choice.lower() == "n":
-            print("Add a new trainer option selected")
+            register_trainer()
         elif choice.lower() == "b":
             return
         elif choice.lower() == "e":
