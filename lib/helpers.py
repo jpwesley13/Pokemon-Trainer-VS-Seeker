@@ -1,9 +1,14 @@
 # lib/helpers.py
 
-def helper_1():
-    print("Performing useful function#1.")
-
+from models.trainer import Trainer
+from models.pokemon import Pokemon
 
 def exit_program():
-    print("Goodbye!")
+    print("VS Seeker shutting down!")
     exit()
+
+def all_trainers():
+    trainers = Trainer.get_all()
+    for trainer in trainers:
+        print(trainer)
+
