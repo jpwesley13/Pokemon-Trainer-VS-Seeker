@@ -69,7 +69,8 @@ def trainer_details_menu(id_):
 
         choice = input("> ")
         if choice.lower() == "a":
-            new_pokemon()
+            new_pokemon(id_)
+            trainer_details(id_)
         elif choice.lower() == "u":
             update_trainer(id_)
             trainer_details(id_)

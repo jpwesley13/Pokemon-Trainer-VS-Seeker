@@ -50,13 +50,33 @@ def badge_validation(badge=None):
             pass
     return badge
 
-def new_pokemon():
-    pass
+def new_pokemon(trainer_id):
+    nickname = input("Enter the Pokemon's nickname: ")
+    species = input("Enter the Pokemon's species: ")
+    level = level_validation()
+    trainer = Trainer.find_by_id(trainer_id)
+    trainer_name = trainer.name
+    try:
+        pokemon = Pokemon.create(nickname, species, level, trainer_name)
+        print(f"{trainer_name} caught {pokemon} the {species}!")
+        return True
+    except Exception as exc:
+        print("Error adding new Pokemon: ", exc)
+        return False
 
-
-# Input nickname, species, level (should inherently belong to trainer on this details)
-# "[Trainer] caught a [NN.species]!"
-# ~> goes back to Trainer details
+def level_validation(level=None):
+    if level is not None:
+        try:
+            level = int(level)
+        except ValueError:
+            pass
+    else:
+        levels = input("Enter the Pokemon's level: ")
+        try:
+            level = int(levels)
+        except ValueError:
+            pass
+    return level
 
 def update_trainer(id_):
     trainer = Trainer.find_by_id(id_)
