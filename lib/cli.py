@@ -63,9 +63,9 @@ def trainer_details_menu():
         print("E. Exit VS Seeker")
 
         choice = input("> ")
-        if choice.lower == "b":
+        if choice.lower() == "b":
             return
-        elif choice.lower == "e":
+        elif choice.lower() == "e":
             exit_program()
         else:
             print("Invalid choice")

@@ -15,7 +15,7 @@ def all_trainers():
 
 def trainer_details(id_):
     trainer = Trainer.find_by_id(id_)
-    pokemons = Pokemon.get_all()
+    pokemons = trainer.pokemons()
     print(
         trainer.details(), 
         "\n======",
