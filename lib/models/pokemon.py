@@ -17,10 +17,10 @@ class Pokemon:
         #Pokemon.all.append(self)
 
     def __repr__(self):
-        return(
-            f"<{self.id}. {self.species}. Nickname: {self.nickname}, "
-            f"Level: {self.level}, Trainer Name: {self.trainer}>"
-        )
+        return f"{self.nickname}"
+    
+    def details(self):
+        return f"{self.nickname} the {self.species}. Level {self.level}"
 
     @property
     def nickname(self):

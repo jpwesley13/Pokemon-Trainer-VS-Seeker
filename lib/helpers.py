@@ -19,7 +19,7 @@ def trainer_details(id_):
     print(
         trainer.details(), 
         "\n======",
-        f"\n{trainer.name}'s Pokemon")
+        f"\n{trainer.name}'s Pokemon:\n")
     for index, pokemon in enumerate(pokemons, start = 1):
         print(f"{index}. {pokemon}")
 
@@ -29,7 +29,7 @@ def register_trainer():
     badges = badge_validation()
     try:
         trainer = Trainer.create(name, hometown, badges)
-        print(f'{trainer} registered to the VS Seeker!')
+        print(f"{trainer} registered to the VS Seeker!")
     except Exception as exc:
         print("Error registering trainer: ", exc)
     all_trainers()
@@ -41,5 +41,7 @@ def badge_validation():
     except ValueError:
         pass
 
-def delete_trainer():
-    pass
+def delete_trainer(id_):
+    trainer = Trainer.find_by_id(id_)
+    trainer.delete()
+    print(f"{trainer.name} removed from VS Seeker!\n")
