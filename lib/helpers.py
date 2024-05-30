@@ -50,6 +50,14 @@ def badge_validation(badge=None):
             pass
     return badge
 
+def new_pokemon():
+    pass
+
+
+# Input nickname, species, level (should inherently belong to trainer on this details)
+# "[Trainer] caught a [NN.species]!"
+# ~> goes back to Trainer details
+
 def update_trainer(id_):
     trainer = Trainer.find_by_id(id_)
     try:
@@ -57,7 +65,8 @@ def update_trainer(id_):
         badges = input("Enter the trainer's new badge count: ")
         if name:
             trainer.name = name
-        trainer.badges = badge_validation(badges)
+        if badges != "":
+            trainer.badges = badge_validation(badges)
 
         trainer.update()
         print(f"{trainer.name} has been updated!")
