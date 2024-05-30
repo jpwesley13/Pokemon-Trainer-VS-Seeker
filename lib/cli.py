@@ -5,10 +5,12 @@ from helpers import (
     all_trainers,
     register_trainer,
     trainer_details,
+    trainer_pokemon,
     delete_trainer,
     update_trainer,
     new_pokemon,
-    pokemon_details
+    pokemon_details,
+    update_pokemon
 )
 
 
@@ -71,7 +73,7 @@ def trainer_details_menu(id_):
         choice = input("> ")
         if choice.isdigit():
             pokemon_id = int(choice)
-            pokemons = trainer_details(id_)
+            pokemons = trainer_pokemon(id_)
             if pokemon_id > 0 and pokemon_id <= len(pokemons):
                 pokemon = pokemons[pokemon_id - 1]
                 print()
@@ -107,9 +109,9 @@ def pokemon_details_menu(trainer_id, pokemon_id):
 
         choice = input("> ")
         if choice.lower() == "u":
-            # update_pokemon(id_)
+            update_pokemon(pokemon_id)
             pokemon_details(pokemon_id)
-        elif choice.lower() == "d":
+        elif choice.lower() == "r":
             # delete_pokemon(id_)
             trainer_details(trainer_id)
             return

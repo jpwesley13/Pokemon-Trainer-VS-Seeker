@@ -25,6 +25,11 @@ def trainer_details(id_):
         print(f"{index}. {pokemon}")
     return pokemons
 
+def trainer_pokemon(id_):
+    trainer = Trainer.find_by_id(id_)
+    pokemons = trainer.pokemons()
+    return pokemons
+
 def register_trainer():
     name = input("Enter the trainer's name: ")
     hometown = input("Enter the trainer's hometown: ")
@@ -85,10 +90,12 @@ def new_pokemon(trainer_id):
         print("Error adding new Pokemon: ", exc)
         return False
 
-def level_validation(level=None):
+def level_validation(current, level=None):
     if level is not None:
         try:
             level = int(level)
+            if level < current:
+                raise ValueError("New level must not be lower than the current level")
         except ValueError:
             pass
     else:
@@ -102,3 +109,22 @@ def level_validation(level=None):
 def pokemon_details(id_):
     pokemon = Pokemon.find_by_id(id_)
     print(pokemon.details())
+
+def update_pokemon(id_):
+    pokemon = Pokemon.find_by_id(id_)
+    try:
+        current = pokemon.level
+        nickname = input("Enter the Pokemon's new nickname: ")
+        species = input("Enter the Pokemon's new evolved species: ")
+        level = input("Enter the Pokemon's new level: ")
+        if nickname:
+            pokemon.nickname = nickname
+        if species:
+            pokemon.species = species
+        if level:
+            pokemon.level = level_validation(current, level)
+
+        pokemon.update()
+        print(f"{pokemon.nickname} has been updated!")
+    except Exception as exc:
+        print("Error updtating Pokemon: ", exc)
