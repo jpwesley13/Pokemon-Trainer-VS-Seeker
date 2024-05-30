@@ -76,7 +76,7 @@ def trainer_details_menu(id_):
                 pokemon = pokemons[pokemon_id - 1]
                 print()
                 pokemon_details(pokemon.id)
-                pokemon_details_menu(pokemon.id)
+                pokemon_details_menu(id_, pokemon.id)
             else:
                 print("Invalid Pokemon ID")
         elif choice.lower() == "a":
@@ -97,7 +97,7 @@ def trainer_details_menu(id_):
         else:
             print("Invalid choice")
 
-def pokemon_details_menu(id_):
+def pokemon_details_menu(trainer_id, pokemon_id):
     while True:
         print("\nU. Update this Pokemon's information")
         print("R. Release this Pokemon back into the wild")
@@ -108,13 +108,13 @@ def pokemon_details_menu(id_):
         choice = input("> ")
         if choice.lower() == "u":
             # update_pokemon(id_)
-            pokemon_details(id_)
+            pokemon_details(pokemon_id)
         elif choice.lower() == "d":
             # delete_pokemon(id_)
-            # all_trainers()
+            trainer_details(trainer_id)
             return
         elif choice.lower() == "b":
-            # all_trainers()
+            trainer_details(trainer_id)
             return
         elif choice.lower() == "e":
             exit_program()
