@@ -13,22 +13,18 @@ from helpers import (
 
 def main():
     while True:
-        menu()
+        print("Please select an option:")
+        print("A. View all trainers")
+        print("E. Exit VS Seeker")
+        
         choice = input("> ")
         if choice.lower() == "a":
-            # from models.trainer import Trainer
-            # trainers = Trainer.get_all()
             trainers = all_trainers()
             trainers_menu(trainers)
         elif choice.lower() == "e":
             exit_program()
         else:
             print("Invalid choice")
-
-def menu():
-    print("Please select an option:")
-    print("A. View all trainers")
-    print("E. Exit VS Seeker")
 
 def trainers_menu(trainers):
     while True:
@@ -42,16 +38,15 @@ def trainers_menu(trainers):
         if choice.isdigit():
             trainer_id = int(choice)
             if trainer_id > 0 and trainer_id <= len(trainers):
-                # selected_trainer = trainers[trainer_id - 1]
                 print()
                 trainer_details(trainer_id)
                 trainer_details_menu(trainer_id)
             else:
                 print("Invalid trainer ID")
         elif choice.lower() == "n":
-            from models.trainer import Trainer
             if register_trainer():
-                trainers = Trainer.get_all()
+                trainers = all_trainers()
+            else:
                 all_trainers()
         elif choice.lower() == "b":
             return
