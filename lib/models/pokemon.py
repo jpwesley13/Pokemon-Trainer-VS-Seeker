@@ -20,7 +20,10 @@ class Pokemon:
         return f"{self.nickname}"
     
     def details(self):
-        return f"{self.nickname} the {self.species}. Level {self.level}"
+        return (
+            f"{self.trainer} has caught this Pokemon: \n" +
+            f"{self.nickname} the {self.species}. Level {self.level}"
+            )
 
     @property
     def nickname(self):
