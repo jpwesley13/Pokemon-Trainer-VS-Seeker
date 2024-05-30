@@ -7,7 +7,8 @@ from helpers import (
     trainer_details,
     delete_trainer,
     update_trainer,
-    new_pokemon
+    new_pokemon,
+    pokemon_details
 )
 
 
@@ -68,7 +69,16 @@ def trainer_details_menu(id_):
         print()
 
         choice = input("> ")
-        if choice.lower() == "a":
+        if choice.isdigit():
+            pokemon_id = int(choice)
+            pokemons = trainer_details(id_)
+            if pokemon_id > 0 and pokemon_id <= len(pokemons):
+                print()
+                pokemon_details(pokemon_id)
+                pokemon_details_menu(pokemon_id)
+            else:
+                print("Invalid Pokemon ID")
+        elif choice.lower() == "a":
             new_pokemon(id_)
             trainer_details(id_)
         elif choice.lower() == "u":
@@ -85,6 +95,9 @@ def trainer_details_menu(id_):
             exit_program()
         else:
             print("Invalid choice")
+
+def pokemon_details_menu(id_):
+
 
 
 if __name__ == "__main__":

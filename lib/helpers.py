@@ -23,6 +23,7 @@ def trainer_details(id_):
         f"\n{trainer.name}'s Pokemon:\n")
     for index, pokemon in enumerate(pokemons, start = 1):
         print(f"{index}. {pokemon}")
+    return pokemons
 
 def register_trainer():
     name = input("Enter the trainer's name: ")
@@ -49,6 +50,26 @@ def badge_validation(badge=None):
         except ValueError:
             pass
     return badge
+
+def update_trainer(id_):
+    trainer = Trainer.find_by_id(id_)
+    try:
+        name = input("Enter the trainer's new name: ")
+        badges = input("Enter the trainer's new badge count: ")
+        if name:
+            trainer.name = name
+        if badges != "":
+            trainer.badges = badge_validation(badges)
+
+        trainer.update()
+        print(f"{trainer.name} has been updated!")
+    except Exception as exc:
+        print("Error updtating trainer: ", exc)
+
+def delete_trainer(id_):
+    trainer = Trainer.find_by_id(id_)
+    trainer.delete()
+    print(f"{trainer.name} removed from VS Seeker!\n")
 
 def new_pokemon(trainer_id):
     nickname = input("Enter the Pokemon's nickname: ")
@@ -78,22 +99,6 @@ def level_validation(level=None):
             pass
     return level
 
-def update_trainer(id_):
-    trainer = Trainer.find_by_id(id_)
-    try:
-        name = input("Enter the trainer's new name: ")
-        badges = input("Enter the trainer's new badge count: ")
-        if name:
-            trainer.name = name
-        if badges != "":
-            trainer.badges = badge_validation(badges)
-
-        trainer.update()
-        print(f"{trainer.name} has been updated!")
-    except Exception as exc:
-        print("Error updtating trainer: ", exc)
-
-def delete_trainer(id_):
-    trainer = Trainer.find_by_id(id_)
-    trainer.delete()
-    print(f"{trainer.name} removed from VS Seeker!\n")
+def pokemon_details(id_):
+    pokemon = Pokemon.find_by_id(id_)
+    print(pokemon.details())
