@@ -14,7 +14,6 @@ class Pokemon:
         self.species = species
         self.level = level
         self.trainer = trainer
-        #Pokemon.all.append(self)
 
     def __repr__(self):
         return f"{self.nickname}"
@@ -53,6 +52,8 @@ class Pokemon:
     @level.setter
     def level(self, level):
         if isinstance(level, int) and 1 <= level <= 100:
+            if hasattr(self, "_level") and level < self._level:
+                raise ValueError("New level must not be lower than the current level")
             self._level = level
         else:
             raise ValueError("Please enter an integer between 1 and 100 for the Pokemon's level")
