@@ -12,6 +12,7 @@ def all_trainers():
     print("Registered Trainers:")
     for index, trainer in enumerate(trainers, start=1):
         print(f"{index}. {trainer}")
+    return trainers
 
 def trainer_details(id_):
     trainer = Trainer.find_by_id(id_)
@@ -30,9 +31,10 @@ def register_trainer():
     try:
         trainer = Trainer.create(name, hometown, badges)
         print(f"{trainer} registered to the VS Seeker!")
+        return True
     except Exception as exc:
         print("Error registering trainer: ", exc)
-    all_trainers()
+        return False
 
 def badge_validation(badge=None):
     if badge is not None:

@@ -16,15 +16,14 @@ def main():
         menu()
         choice = input("> ")
         if choice.lower() == "a":
-            from models.trainer import Trainer
-            trainers = Trainer.get_all()
-            all_trainers()
+            # from models.trainer import Trainer
+            # trainers = Trainer.get_all()
+            trainers = all_trainers()
             trainers_menu(trainers)
         elif choice.lower() == "e":
             exit_program()
         else:
             print("Invalid choice")
-
 
 def menu():
     print("Please select an option:")
@@ -50,7 +49,10 @@ def trainers_menu(trainers):
             else:
                 print("Invalid trainer ID")
         elif choice.lower() == "n":
-            register_trainer()
+            from models.trainer import Trainer
+            if register_trainer():
+                trainers = Trainer.get_all()
+                all_trainers()
         elif choice.lower() == "b":
             return
         elif choice.lower() == "e":
