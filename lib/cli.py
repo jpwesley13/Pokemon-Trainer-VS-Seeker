@@ -43,7 +43,7 @@ def trainers_menu(trainers):
             if trainer_id > 0 and trainer_id <= len(trainers):
                 # selected_trainer = trainers[trainer_id - 1]
                 trainer_details(trainer_id)
-                all_trainers()
+                trainer_details_menu()
             else:
                 print("Invalid trainer ID")
         elif choice.lower() == "n":
@@ -51,6 +51,21 @@ def trainers_menu(trainers):
         elif choice.lower() == "b":
             return
         elif choice.lower() == "e":
+            exit_program()
+        else:
+            print("Invalid choice")
+
+def trainer_details_menu():
+    while True:
+        print("\n Enter Pokemon's ID for additional details")
+        print("      or")
+        print("B. Back to previous menu")
+        print("E. Exit VS Seeker")
+
+        choice = input("> ")
+        if choice.lower == "b":
+            return
+        elif choice.lower == "e":
             exit_program()
         else:
             print("Invalid choice")
