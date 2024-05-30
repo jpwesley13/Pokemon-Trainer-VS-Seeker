@@ -5,7 +5,8 @@ from helpers import (
     all_trainers,
     register_trainer,
     trainer_details,
-    delete_trainer
+    delete_trainer,
+    update_trainer
 )
 
 
@@ -61,13 +62,17 @@ def trainer_details_menu(id_):
     while True:
         print("\n Enter Pokemon's ID for additional details")
         print("      or")
+        print("U. Update this trainer's information")
         print("D. Delete this trainer")
         print("B. Back to previous menu")
         print("E. Exit VS Seeker")
         print()
 
         choice = input("> ")
-        if choice.lower() == "d":
+        if choice.lower() == "u":
+            update_trainer(id_)
+            trainer_details(id_)
+        elif choice.lower() == "d":
             delete_trainer(id_)
             all_trainers()
             return

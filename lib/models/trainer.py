@@ -90,10 +90,10 @@ class Trainer:
     def update(self):
         sql = """
             UPDATE trainers
-            SET name = ?, hometown = ?, badges = ?
+            SET name = ?, badges = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.name, self.hometown, self.badges, self.id))
+        CURSOR.execute(sql, (self.name, self.badges, self.id))
         CONN.commit()
 
     def delete(self):

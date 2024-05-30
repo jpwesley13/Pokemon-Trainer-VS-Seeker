@@ -34,12 +34,33 @@ def register_trainer():
         print("Error registering trainer: ", exc)
     all_trainers()
 
-def badge_validation():
-    badges = input("How many badges does the trainer have?: ")
+def badge_validation(badge=None):
+    if badge is not None:
+        try:
+            badge = int(badge)
+        except ValueError:
+            pass
+    else:
+        badges = input("How many badges does the trainer have?: ")
+        try:
+            badge = int(badges)
+        except ValueError:
+            pass
+    return badge
+
+def update_trainer(id_):
+    trainer = Trainer.find_by_id(id_)
     try:
-        badges = int(badges)
-    except ValueError:
-        pass
+        name = input("Enter the trainer's new name: ")
+        badges = input("Enter the trainer's new badge count: ")
+        if name:
+            trainer.name = name
+        trainer.badges = badge_validation(badges)
+
+        trainer.update()
+        print(f"{trainer.name} has been updated!")
+    except Exception as exc:
+        print("Error updtating trainer: ", exc)
 
 def delete_trainer(id_):
     trainer = Trainer.find_by_id(id_)
