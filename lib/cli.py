@@ -10,7 +10,8 @@ from helpers import (
     update_trainer,
     new_pokemon,
     pokemon_details,
-    update_pokemon
+    update_pokemon,
+    release_pokemon
 )
 
 
@@ -112,7 +113,7 @@ def pokemon_details_menu(trainer_id, pokemon_id):
             update_pokemon(pokemon_id)
             pokemon_details(pokemon_id)
         elif choice.lower() == "r":
-            # delete_pokemon(id_)
+            release_pokemon(pokemon_id)
             trainer_details(trainer_id)
             return
         elif choice.lower() == "b":

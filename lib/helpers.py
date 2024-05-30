@@ -126,3 +126,8 @@ def update_pokemon(id_):
         print(f"{pokemon.nickname} has been updated!")
     except Exception as exc:
         print("Error updtating Pokemon: ", exc)
+
+def release_pokemon(id_):
+    pokemon = Pokemon.find_by_id(id_)
+    pokemon.delete()
+    print(f"{pokemon.nickname} was released back into the wild!\n")
