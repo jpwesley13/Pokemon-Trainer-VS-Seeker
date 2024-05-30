@@ -73,6 +73,9 @@ def update_trainer(id_):
 
 def delete_trainer(id_):
     trainer = Trainer.find_by_id(id_)
+    pokemons = trainer.pokemons()
+    for pokemon in pokemons:
+        pokemon.delete()
     trainer.delete()
     print(f"{trainer.name} removed from VS Seeker!\n")
 
