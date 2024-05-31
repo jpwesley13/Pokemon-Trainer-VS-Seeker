@@ -9,20 +9,22 @@ def exit_program():
 
 def all_trainers():
     trainers = Trainer.get_all()
-    print("Registered Trainers:")
+    print("\nRegistered Trainers:")
+    print("============\n")
     for index, trainer in enumerate(trainers, start=1):
         print(f"{index}. {trainer}")
+    print("\n============")
     return trainers
 
 def trainer_details(id_):
     trainer = Trainer.find_by_id(id_)
     pokemons = trainer.pokemons()
-    print(
-        trainer.details(), 
-        "\n======",
-        f"\n{trainer.name}'s Pokemon:\n")
+    print(trainer.details()) 
+    print(f"\n{trainer.name}'s Pokemon:")
+    print("============\n")
     for index, pokemon in enumerate(pokemons, start = 1):
         print(f"{index}. {pokemon}")
+    print("\n============")
     return pokemons
 
 def trainer_pokemon(id_):
@@ -36,7 +38,7 @@ def register_trainer():
     badges = badge_validation()
     try:
         trainer = Trainer.create(name, hometown, badges)
-        print(f"{trainer} registered to the VS Seeker!")
+        print(f"\n{trainer} registered to the VS Seeker!")
         return True
     except Exception as exc:
         print("Error registering trainer: ", exc)
@@ -67,7 +69,7 @@ def update_trainer(id_):
             trainer.badges = badge_validation(badges)
 
         trainer.update()
-        print(f"{trainer.name} has been updated!")
+        print(f"\n{trainer.name} has been updated!")
     except Exception as exc:
         print("Error updtating trainer: ", exc)
 
@@ -77,7 +79,7 @@ def delete_trainer(id_):
     for pokemon in pokemons:
         pokemon.delete()
     trainer.delete()
-    print(f"{trainer.name} removed from VS Seeker!\n")
+    print(f"\n{trainer.name} removed from VS Seeker!\n")
 
 def new_pokemon(trainer_id):
     nickname = input("Enter the Pokemon's nickname: ")
@@ -87,7 +89,9 @@ def new_pokemon(trainer_id):
     trainer_name = trainer.name
     try:
         pokemon = Pokemon.create(nickname, species, level, trainer_name)
+        print("============\n")
         print(f"{trainer_name} caught {pokemon} the {species}!")
+        print("\n============")
         return True
     except Exception as exc:
         print("Error adding new Pokemon: ", exc)
@@ -109,7 +113,11 @@ def level_validation(level=None):
 
 def pokemon_details(id_):
     pokemon = Pokemon.find_by_id(id_)
+    trainer = pokemon.trainer
+    print(f"{trainer} has caught this Pokemon: ")
+    print("------------")
     print(pokemon.details())
+    print("------------")
 
 def update_pokemon(id_):
     pokemon = Pokemon.find_by_id(id_)
@@ -126,11 +134,11 @@ def update_pokemon(id_):
             pokemon.level = level_validation(level)
 
         pokemon.update()
-        print(f"{pokemon.nickname} has been updated!")
+        print(f"\n{pokemon.nickname} has been updated!")
     except Exception as exc:
         print("Error updtating Pokemon: ", exc)
 
 def release_pokemon(id_):
     pokemon = Pokemon.find_by_id(id_)
     pokemon.delete()
-    print(f"{pokemon.nickname} was released back into the wild!\n")
+    print(f"\n{pokemon.nickname} was released back into the wild!\n")

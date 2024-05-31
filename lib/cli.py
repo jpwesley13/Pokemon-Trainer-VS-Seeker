@@ -18,9 +18,10 @@ from helpers import (
 
 def main():
     while True:
-        print("Please select an option:")
-        print("A. View all trainers")
-        print("E. Exit VS Seeker")
+        print("\nWelcome to the VS Seeker! Select an option:\n")
+        print("  A. View all trainers")
+        print("  E. Exit VS Seeker")
+        print()
         
         choice = input("> ")
         if choice.lower() == "a":
@@ -35,9 +36,10 @@ def trainers_menu(trainers):
     while True:
         print("\nEnter trainer's ID for additional details")
         print("      or")
-        print("N. Add a new trainer")
-        print("B. Back to previous menu")
-        print("E. Exit VS Seeker")
+        print("  N. Add a new trainer")
+        print("  B. Back to previous menu")
+        print("  E. Exit VS Seeker")
+        print()
 
         choice = input("> ")
         if choice.isdigit():
@@ -64,11 +66,11 @@ def trainer_details_menu(id_):
     while True:
         print("\n Enter Pokemon's ID for additional details")
         print("      or")
-        print("A. Add a newly obtained Pokemon for this trainer")
-        print("U. Update this trainer's information")
-        print("D. Delete this trainer")
-        print("B. Back to previous menu")
-        print("E. Exit VS Seeker")
+        print("  N. Add a newly obtained Pokemon for this trainer")
+        print("  U. Update this trainer's information")
+        print("  D. Delete this trainer")
+        print("  B. Back to previous menu")
+        print("  E. Exit VS Seeker")
         print()
 
         choice = input("> ")
@@ -82,7 +84,7 @@ def trainer_details_menu(id_):
                 pokemon_details_menu(id_, pokemon.id)
             else:
                 print("Invalid Pokemon ID")
-        elif choice.lower() == "a":
+        elif choice.lower() == "n":
             new_pokemon(id_)
             trainer_details(id_)
         elif choice.lower() == "u":
@@ -102,10 +104,10 @@ def trainer_details_menu(id_):
 
 def pokemon_details_menu(trainer_id, pokemon_id):
     while True:
-        print("\nU. Update this Pokemon's information")
-        print("R. Release this Pokemon back into the wild")
-        print("B. Back to previous menu")
-        print("E. Exit VS Seeker")
+        print("\n  U. Update this Pokemon's information")
+        print("  R. Release this Pokemon back into the wild")
+        print("  B. Back to previous menu")
+        print("  E. Exit VS Seeker")
         print()
 
         choice = input("> ")
