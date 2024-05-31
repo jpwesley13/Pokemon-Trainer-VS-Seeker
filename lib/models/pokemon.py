@@ -30,7 +30,7 @@ class Pokemon:
         if isinstance(nickname, str) and len(nickname):
             self._nickname = nickname
         else:
-            raise ValueError("Please enter a non-empty string for the Pokemon's nickname")
+            raise ValueError("Please enter a non-empty string for the Pokemon's nickname\n")
 
     @property
     def species(self):
@@ -39,7 +39,7 @@ class Pokemon:
     @species.setter
     def species(self, species):
         if species not in kanto_list:
-            raise Exception("Please enter a Kantonian Pokemon species")
+            raise Exception("Please enter a Kantonian Pokemon species\n")
         self._species = species
 
     @property
@@ -50,10 +50,10 @@ class Pokemon:
     def level(self, level):
         if isinstance(level, int) and 1 <= level <= 100:
             if hasattr(self, "_level") and level < self._level:
-                raise ValueError("New level must not be lower than the current level")
+                raise ValueError("New level must not be lower than the current level\n")
             self._level = level
         else:
-            raise ValueError("Please enter an integer between 1 and 100 for the Pokemon's level")
+            raise ValueError("Please enter an integer between 1 and 100 for the Pokemon's level\n")
         
     @property
     def trainer(self):
@@ -64,7 +64,7 @@ class Pokemon:
         if type(trainer) is int and Trainer.find_by_id(trainer):
             self._trainer = trainer
         else:
-            raise ValueError("trainer must reference an existing Trainer ID in the database")
+            raise ValueError("trainer must reference an existing Trainer ID in the database\n")
         
     @classmethod
     def create_table(cls):
