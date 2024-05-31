@@ -156,6 +156,6 @@ class Trainer:
             FROM pokemons
             WHERE trainer = ?
         """
-        CURSOR.execute(sql, (self.name,),)
+        CURSOR.execute(sql, (self.id,),)
         rows = CURSOR.fetchall()
         return [Pokemon.instance_from_db(row) for row in rows]

@@ -18,7 +18,7 @@ from helpers import (
 
 def main():
     while True:
-        print("\nWelcome to the VS Seeker! Select an option:\n")
+        print("\nWelcome to the VS Seeker! Select an option\n")
         print("  A. View all trainers")
         print("  E. Exit VS Seeker")
         print()
@@ -64,7 +64,7 @@ def trainers_menu(trainers):
 
 def trainer_details_menu(id_):
     while True:
-        print("\n Enter Pokemon's ID for additional details")
+        print("\nEnter Pokemon's ID for additional details")
         print("      or")
         print("  N. Add a newly obtained Pokemon for this trainer")
         print("  U. Update this trainer's information")
@@ -104,6 +104,7 @@ def trainer_details_menu(id_):
 
 def pokemon_details_menu(trainer_id, pokemon_id):
     while True:
+        print("Select an option")
         print("\n  U. Update this Pokemon's information")
         print("  R. Release this Pokemon back into the wild")
         print("  B. Back to previous menu")

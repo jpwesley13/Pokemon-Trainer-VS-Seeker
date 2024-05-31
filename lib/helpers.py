@@ -69,7 +69,7 @@ def update_trainer(id_):
             trainer.badges = badge_validation(badges)
 
         trainer.update()
-        print(f"\n{trainer.name} has been updated!")
+        print(f"\n{trainer.name} has been updated!\n")
     except Exception as exc:
         print("Error updtating trainer: ", exc)
 
@@ -88,7 +88,7 @@ def new_pokemon(trainer_id):
     trainer = Trainer.find_by_id(trainer_id)
     trainer_name = trainer.name
     try:
-        pokemon = Pokemon.create(nickname, species, level, trainer_name)
+        pokemon = Pokemon.create(nickname, species, level, trainer_id)
         print("============\n")
         print(f"{trainer_name} caught {pokemon} the {species}!")
         print("\n============")
@@ -113,8 +113,8 @@ def level_validation(level=None):
 
 def pokemon_details(id_):
     pokemon = Pokemon.find_by_id(id_)
-    trainer = pokemon.trainer
-    print(f"{trainer} has caught this Pokemon: ")
+    trainer = Trainer.find_by_id(pokemon.trainer)
+    print(f"{trainer.name} has caught this Pokemon: ")
     print("------------")
     print(pokemon.details())
     print("------------")
@@ -134,7 +134,7 @@ def update_pokemon(id_):
             pokemon.level = level_validation(level)
 
         pokemon.update()
-        print(f"\n{pokemon.nickname} has been updated!")
+        print(f"\n{pokemon.nickname} has been updated!\n")
     except Exception as exc:
         print("Error updtating Pokemon: ", exc)
 

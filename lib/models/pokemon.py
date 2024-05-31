@@ -61,10 +61,10 @@ class Pokemon:
     
     @trainer.setter
     def trainer(self, trainer):
-        if type(trainer) is str and Trainer.find_by_name(trainer):
+        if type(trainer) is int and Trainer.find_by_id(trainer):
             self._trainer = trainer
         else:
-            raise ValueError("trainer must reference an existing Trainer name in the database")
+            raise ValueError("trainer must reference an existing Trainer ID in the database")
         
     @classmethod
     def create_table(cls):
@@ -74,8 +74,8 @@ class Pokemon:
             nickname TEXT,
             species TEXT,
             level INTEGER,
-            trainer TEXT,
-            FOREIGN KEY (trainer) REFERENCES trainers(name))
+            trainer INTEGER,
+            FOREIGN KEY (trainer) REFERENCES trainers(id))
         """
         CURSOR.execute(sql)
         CONN.commit()

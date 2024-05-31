@@ -14,8 +14,8 @@ def reset():
 
     trainer_1 = Trainer.create("Dakota", "Purgsville", 3)
     trainer_2 = Trainer.create("Dyna", "Italyton", 8)
-    Pokemon.create("Rori", "Pikachu", 26, trainer_1.name)
-    Pokemon.create("Ali", "Arcanine", 73, trainer_2.name)
+    Pokemon.create("Rori", "Pikachu", 26, trainer_1.id)
+    Pokemon.create("Ali", "Arcanine", 73, trainer_2.id)
 
 reset()
 ipdb.set_trace()
