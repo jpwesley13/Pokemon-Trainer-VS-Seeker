@@ -156,13 +156,13 @@ class Pokemon:
         row = CURSOR.execute(sql, (id,)).fetchone()
         return cls.instance_from_db(row) if row else None
     
-    @classmethod
-    def find_by_nickname(cls, nickname):
-        sql = """
-            SELECT *
-            FROM pokemons
-            WHERE nickname is ?
-        """
-        row = CURSOR.execute(sql, (nickname,)).fetchone()
-        return cls.instance_from_db(row) if row else None
+    # @classmethod
+    # def find_by_nickname(cls, nickname):
+    #     sql = """
+    #         SELECT *
+    #         FROM pokemons
+    #         WHERE nickname is ?
+    #     """
+    #     row = CURSOR.execute(sql, (nickname,)).fetchone()
+    #     return cls.instance_from_db(row) if row else None
     
