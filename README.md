@@ -1,6 +1,6 @@
 # Pokemon Trainer VS Seeker
 
-The VS Seeker is an application with the primary function of allowing a Pokemon Trainer (henceforth "user") to register and reference rivals battled through a user's adventure. Though this is its primary function, the VS Seeker can also be used simply as a way to log and record trainers, or as a way for the user to keep track of their own progress. The VS Seeker allows the user to choose from a list of its registered trainers, offering them a selection of options for both the trainers and their known Pokemon.
+The VS Seeker is an application with the primary function of allowing a Pokemon Trainer (henceforth "user") to register and reference rivals battled throughout a user's adventure. Though this is its primary function, the VS Seeker can also be used simply as a way to log and record trainers, or as a way for the user to keep track of their own progress. The VS Seeker allows the user to choose from a list of its registered trainers, offering them a selection of options for both the trainers and their known Pokemon.
 
 ## Initialization
 
@@ -21,7 +21,7 @@ On the VS Seeker's second menu after entry, the user is presented with a list of
 
 ## Register New Trainer
 
-When the user wishes to register a new trainer to their VS Seeker, they are asked to enter that user's name, hometown, and current number of badges owned. The former two are entered as strings and the lattermost is entered as an integer between 0 and 8. If the user enters a value that does not conform to these constraints they will be met with an error message and the trainer will not be registered.
+When the user wishes to register a new trainer to their VS Seeker, they are asked to enter that trainer's name, hometown, and current number of badges owned. The former two are entered as strings and the lattermost is entered as an integer between 0 and 8. If the user enters a value that does not conform to these constraints they will be met with an error message and the trainer will not be registered.
 
 ## Trainer Details
 
@@ -29,7 +29,7 @@ Upon selecting a trainer from the All Trainers menu, the user is met with a blur
 
 On an individual trainer's details page, the user may update that trainer's information, in the event that they have undergone a name change or had a change in their badge count. The user is unable to change a trainer's hometown once they have been registered. Should the user no longer wish to keep track of this trainer, they may also remove the user and all associated Pokemon from their VS Seeker from this menu.
 
-After registration or as new information is obtained, the user is able to add additional Pokemon to the trainer on their details page. When adding newly obtained Pokemon to a trainer, the user is asked to enter the Pokemon's nickname, its species, and its current level. After doing so the Pokemon will automatically be added to the list of Pokemon owned by that trainer. Like with the All Trainers menu, if the user enters a Pokemon's respective number on the list shown, they can explore additional details for it.
+After registration or as new information is obtained, the user is able to add additional Pokemon to the trainer on their details page. When adding newly obtained Pokemon to a trainer, the user is asked to enter the Pokemon's nickname, its species, and its current level Like with registering a new trainer, the former two inputs are strings, and the lattermost is an integer, with levels being between 1 and 100. After inputting the details, the Pokemon will automatically be added to the list of Pokemon owned by that trainer. Like with the All Trainers menu, if the user enters a Pokemon's respective number on the list shown, they can explore additional details for it.
 
 ## Pokemon Details
 
@@ -37,7 +37,7 @@ When a Pokemon is selected from a trainer's details page, the user is met with a
 
 Should a user wish to update a trainer's Pokemon, they will be asked what the Pokemon's new nickname is, what its new species is if it has evolved, and what its new level is. 
 
-In addition to being able to update a Pokemon's information, the user may also remove the Pokemon from the trainer from the details page if its has been learned that it was released back into the wild.
+In addition to being able to update a Pokemon's information, the user may also remove the Pokemon from the trainer from this details page if it has been learned that the Pokemon was released back into the wild.
 
 ## Menu Navigation
 
