@@ -3,7 +3,6 @@
 from helpers import (
     exit_program,
     all_trainers,
-    trainer_list,
     register_trainer,
     trainer_details,
     trainer_pokemon,
@@ -26,15 +25,15 @@ def main():
         
         choice = input("> ")
         if choice.lower() == "a":
-            trainers = all_trainers()
-            trainers_menu(trainers)
+            trainers_menu()
         elif choice.lower() == "e":
             exit_program()
         else:
             print("Invalid choice")
 
-def trainers_menu(trainers):
+def trainers_menu():
     while True:
+        trainers = all_trainers()
         print("\nEnter trainer's ID for additional details")
         print("      or")
         print("  N. Add a new trainer")
@@ -46,8 +45,7 @@ def trainers_menu(trainers):
         if choice.isdigit():
             trainer_num = int(choice) - 1
             if trainer_num >= 0 and trainer_num < len(trainers):
-                new_trainers = trainer_list()
-                trainer = new_trainers[trainer_num]
+                trainer = trainers[trainer_num]
                 print()
                 print(trainers)
                 trainer_details(trainer.id)
@@ -55,10 +53,7 @@ def trainers_menu(trainers):
             else:
                 print("Invalid trainer ID")
         elif choice.lower() == "n":
-            if register_trainer():
-                trainers = all_trainers()
-            else:
-                all_trainers()
+            register_trainer()
         elif choice.lower() == "b":
             return
         elif choice.lower() == "e":
@@ -96,10 +91,8 @@ def trainer_details_menu(id_):
             trainer_details(id_)
         elif choice.lower() == "d":
             delete_trainer(id_)
-            all_trainers()
             return
         elif choice.lower() == "b":
-            all_trainers()
             return
         elif choice.lower() == "e":
             exit_program()

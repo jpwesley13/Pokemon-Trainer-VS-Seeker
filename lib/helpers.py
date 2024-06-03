@@ -16,10 +16,6 @@ def all_trainers():
     print("\n============")
     return trainers
 
-def trainer_list():
-    trainers = Trainer.get_all()
-    return trainers
-
 def trainer_details(id_):
     trainer = Trainer.find_by_id(id_)
     pokemons = trainer.pokemons()
