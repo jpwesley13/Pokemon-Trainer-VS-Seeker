@@ -47,8 +47,6 @@ def trainers_menu():
             if trainer_num >= 0 and trainer_num < len(trainers):
                 trainer = trainers[trainer_num]
                 print()
-                print(trainers)
-                trainer_details(trainer.id)
                 trainer_details_menu(trainer.id)
             else:
                 print("Invalid trainer ID")
@@ -63,6 +61,7 @@ def trainers_menu():
 
 def trainer_details_menu(id_):
     while True:
+        trainer_details(id_)
         print("\nEnter Pokemon's ID for additional details")
         print("      or")
         print("  N. Add a newly obtained Pokemon for this trainer")
@@ -85,10 +84,8 @@ def trainer_details_menu(id_):
                 print("Invalid Pokemon ID")
         elif choice.lower() == "n":
             new_pokemon(id_)
-            trainer_details(id_)
         elif choice.lower() == "u":
             update_trainer(id_)
-            trainer_details(id_)
         elif choice.lower() == "d":
             delete_trainer(id_)
             return
@@ -114,10 +111,8 @@ def pokemon_details_menu(trainer_id, pokemon_id):
             pokemon_details(pokemon_id)
         elif choice.lower() == "r":
             release_pokemon(pokemon_id)
-            trainer_details(trainer_id)
             return
         elif choice.lower() == "b":
-            trainer_details(trainer_id)
             return
         elif choice.lower() == "e":
             exit_program()
