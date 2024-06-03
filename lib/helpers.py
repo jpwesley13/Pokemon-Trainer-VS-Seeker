@@ -16,6 +16,10 @@ def all_trainers():
     print("\n============")
     return trainers
 
+def trainer_list():
+    trainers = Trainer.get_all()
+    return trainers
+
 def trainer_details(id_):
     trainer = Trainer.find_by_id(id_)
     pokemons = trainer.pokemons()
@@ -75,11 +79,12 @@ def update_trainer(id_):
 
 def delete_trainer(id_):
     trainer = Trainer.find_by_id(id_)
+    print(trainer)
     pokemons = trainer.pokemons()
     for pokemon in pokemons:
         pokemon.delete()
     trainer.delete()
-    print(f"\n{trainer.name} removed from VS Seeker!\n")
+    print(f"\n{trainer.name} removed from VS Seeker!")
 
 def new_pokemon(trainer_id):
     nickname = input("Enter the Pokemon's nickname: ")

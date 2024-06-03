@@ -3,6 +3,7 @@
 from helpers import (
     exit_program,
     all_trainers,
+    trainer_list,
     register_trainer,
     trainer_details,
     trainer_pokemon,
@@ -43,11 +44,14 @@ def trainers_menu(trainers):
 
         choice = input("> ")
         if choice.isdigit():
-            trainer_id = int(choice)
-            if trainer_id > 0 and trainer_id <= len(trainers):
+            trainer_num = int(choice) - 1
+            if trainer_num >= 0 and trainer_num < len(trainers):
+                new_trainers = trainer_list()
+                trainer = new_trainers[trainer_num]
                 print()
-                trainer_details(trainer_id)
-                trainer_details_menu(trainer_id)
+                print(trainers)
+                trainer_details(trainer.id)
+                trainer_details_menu(trainer.id)
             else:
                 print("Invalid trainer ID")
         elif choice.lower() == "n":
