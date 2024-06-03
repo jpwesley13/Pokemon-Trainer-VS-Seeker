@@ -43,9 +43,9 @@ def trainers_menu():
 
         choice = input("> ")
         if choice.isdigit():
-            trainer_num = int(choice) - 1
+            trainer_num = int(choice)
             if trainer_num >= 0 and trainer_num < len(trainers):
-                trainer = trainers[trainer_num]
+                trainer = trainers[trainer_num - 1]
                 print()
                 trainer_details_menu(trainer.id)
             else:
@@ -78,8 +78,7 @@ def trainer_details_menu(id_):
             if pokemon_id > 0 and pokemon_id <= len(pokemons):
                 pokemon = pokemons[pokemon_id - 1]
                 print()
-                pokemon_details(pokemon.id)
-                pokemon_details_menu(id_, pokemon.id)
+                pokemon_details_menu(pokemon.id)
             else:
                 print("Invalid Pokemon ID")
         elif choice.lower() == "n":
@@ -96,8 +95,9 @@ def trainer_details_menu(id_):
         else:
             print("Invalid choice")
 
-def pokemon_details_menu(trainer_id, pokemon_id):
+def pokemon_details_menu(pokemon_id):
     while True:
+        pokemon_details(pokemon_id)
         print("Select an option")
         print("\n  U. Update this Pokemon's information")
         print("  R. Release this Pokemon back into the wild")
@@ -108,7 +108,6 @@ def pokemon_details_menu(trainer_id, pokemon_id):
         choice = input("> ")
         if choice.lower() == "u":
             update_pokemon(pokemon_id)
-            pokemon_details(pokemon_id)
         elif choice.lower() == "r":
             release_pokemon(pokemon_id)
             return
