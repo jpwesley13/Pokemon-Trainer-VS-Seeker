@@ -44,7 +44,7 @@ def trainers_menu():
         choice = input("> ")
         if choice.isdigit():
             trainer_num = int(choice)
-            if trainer_num >= 0 and trainer_num < len(trainers):
+            if trainer_num > 0 and trainer_num <= len(trainers):
                 trainer = trainers[trainer_num - 1]
                 print()
                 trainer_details_menu(trainer.id)

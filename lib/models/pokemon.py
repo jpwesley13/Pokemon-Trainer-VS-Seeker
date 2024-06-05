@@ -8,24 +8,24 @@ with open("lib/kanto.json") as file:
 class Pokemon:
     all = {}
 
-    def __init__(self, nickname, species, level, trainer, id=None):
+    def __init__(self, name, species, level, trainer, id=None):
         self.id = id
-        self.nickname = nickname
+        self.name = name
         self.species = species
         self.level = level
         self.trainer = trainer
     
     def details(self):
-        return (f"{self.nickname} the {self.species}. Level {self.level}")
+        return (f"{self.name} the {self.species}. Level {self.level}")
 
     @property
-    def nickname(self):
-        return self._nickname
+    def name(self):
+        return self._name
     
-    @nickname.setter
-    def nickname(self, nickname):
-        if isinstance(nickname, str) and len(nickname):
-            self._nickname = nickname
+    @name.setter
+    def name(self, name):
+        if isinstance(name, str) and len(name):
+            self._name = name
         else:
             raise ValueError("Please enter a non-empty string for the Pokemon's nickname\n")
 
@@ -68,7 +68,7 @@ class Pokemon:
         sql = """
             CREATE TABLE IF NOT EXISTS pokemons (
             id INTEGER PRIMARY KEY,
-            nickname TEXT,
+            name TEXT,
             species TEXT,
             level INTEGER,
             trainer INTEGER,
@@ -87,10 +87,10 @@ class Pokemon:
 
     def save(self):
         sql = """
-            INSERT INTO pokemons (nickname, species, level, trainer)
+            INSERT INTO pokemons (name, species, level, trainer)
             VALUES (?, ?, ?, ?)
         """
-        CURSOR.execute(sql, (self.nickname, self.species, self.level, self.trainer))
+        CURSOR.execute(sql, (self.name, self.species, self.level, self.trainer))
         CONN.commit()
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
@@ -98,10 +98,10 @@ class Pokemon:
     def update(self):
         sql = """
             UPDATE pokemons
-            SET nickname = ?, species = ?, level = ?
+            SET name = ?, species = ?, level = ?
             WHERE id = ?
         """
-        CURSOR.execute(sql, (self.nickname, self.species, self.level, self.id))
+        CURSOR.execute(sql, (self.name, self.species, self.level, self.id))
         CONN.commit()
 
     def delete(self):
@@ -115,8 +115,8 @@ class Pokemon:
         self.id = None
 
     @classmethod
-    def create(cls, nickname, species, level, trainer):
-        pokemon = cls(nickname, species, level, trainer)
+    def create(cls, name, species, level, trainer):
+        pokemon = cls(name, species, level, trainer)
         pokemon.save()
         return pokemon
     
@@ -124,7 +124,7 @@ class Pokemon:
     def instance_from_db(cls, row):
         pokemon = cls.all.get(row[0])
         if pokemon:
-            pokemon.nickname = row[1]
+            pokemon.name = row[1]
             pokemon.species = row[2]
             pokemon.level = row[3]
             pokemon.trainer = row[4]

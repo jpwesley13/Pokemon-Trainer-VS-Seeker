@@ -4,7 +4,6 @@
 from models.__init__ import CONN, CURSOR
 from models.pokemon import Pokemon
 from models.trainer import Trainer
-import ipdb
 
 def reset():
     Pokemon.drop_table()
@@ -18,4 +17,4 @@ def reset():
     Pokemon.create("Ali", "Arcanine", 73, trainer_2.id)
 
 reset()
-ipdb.set_trace()
+breakpoint()
