@@ -9,13 +9,13 @@ def main_menu():
     print("  E. Exit VS Seeker")
     print()
 
-def sub_menu_1():
+def sub_menu_trainers():
     print("\nEnter trainer's ID for additional details")
     print("      or")
     print("  N. Add a new trainer")
     universal_menu()
 
-def sub_menu_2():
+def sub_menu_trainer():
     print("\nEnter Pokemon's ID for additional details")
     print("      or")
     print("  N. Add a newly obtained Pokemon for this trainer")
@@ -23,7 +23,7 @@ def sub_menu_2():
     print("  D. Delete this trainer")
     universal_menu()
 
-def sub_menu_3():
+def sub_menu_pokemon():
     print("Select an option")
     print("\n  U. Update this Pokemon's information")
     print("  R. Release this Pokemon back into the wild")
