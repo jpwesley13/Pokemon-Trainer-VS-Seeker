@@ -3,6 +3,38 @@
 from models.trainer import Trainer
 from models.pokemon import Pokemon
 
+def main_menu():
+    print("\nWelcome to the VS Seeker! Select an option\n")
+    print("  A. View all trainers")
+    print("  E. Exit VS Seeker")
+    print()
+
+def sub_menu_1():
+    print("\nEnter trainer's ID for additional details")
+    print("      or")
+    print("  N. Add a new trainer")
+    universal_menu()
+
+def sub_menu_2():
+    print("\nEnter Pokemon's ID for additional details")
+    print("      or")
+    print("  N. Add a newly obtained Pokemon for this trainer")
+    print("  U. Update this trainer's information")
+    print("  D. Delete this trainer")
+    universal_menu()
+
+def sub_menu_3():
+    print("Select an option")
+    print("\n  U. Update this Pokemon's information")
+    print("  R. Release this Pokemon back into the wild")
+    universal_menu()
+
+
+def universal_menu():
+    print("  B. Back to previous menu")
+    print("  E. Exit VS Seeker")
+    print()
+
 def exit_program():
     print("VS Seeker shutting down!")
     exit()

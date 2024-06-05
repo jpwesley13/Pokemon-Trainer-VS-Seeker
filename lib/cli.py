@@ -1,6 +1,10 @@
 # lib/cli.py
 
 from helpers import (
+    main_menu,
+    sub_menu_1,
+    sub_menu_2,
+    sub_menu_3,
     exit_program,
     all_trainers,
     register_trainer,
@@ -18,10 +22,7 @@ from helpers import (
 
 def main():
     while True:
-        print("\nWelcome to the VS Seeker! Select an option\n")
-        print("  A. View all trainers")
-        print("  E. Exit VS Seeker")
-        print()
+        main_menu()
         
         choice = input("> ")
         if choice.lower() == "a":
@@ -34,12 +35,7 @@ def main():
 def trainers_menu():
     while True:
         trainers = all_trainers()
-        print("\nEnter trainer's ID for additional details")
-        print("      or")
-        print("  N. Add a new trainer")
-        print("  B. Back to previous menu")
-        print("  E. Exit VS Seeker")
-        print()
+        sub_menu_1()
 
         choice = input("> ")
         if choice.isdigit():
@@ -62,14 +58,7 @@ def trainers_menu():
 def trainer_details_menu(id_):
     while True:
         trainer_details(id_)
-        print("\nEnter Pokemon's ID for additional details")
-        print("      or")
-        print("  N. Add a newly obtained Pokemon for this trainer")
-        print("  U. Update this trainer's information")
-        print("  D. Delete this trainer")
-        print("  B. Back to previous menu")
-        print("  E. Exit VS Seeker")
-        print()
+        sub_menu_2()
 
         choice = input("> ")
         if choice.isdigit():
@@ -98,12 +87,7 @@ def trainer_details_menu(id_):
 def pokemon_details_menu(pokemon_id):
     while True:
         pokemon_details(pokemon_id)
-        print("Select an option")
-        print("\n  U. Update this Pokemon's information")
-        print("  R. Release this Pokemon back into the wild")
-        print("  B. Back to previous menu")
-        print("  E. Exit VS Seeker")
-        print()
+        sub_menu_3()
 
         choice = input("> ")
         if choice.lower() == "u":
