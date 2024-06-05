@@ -14,9 +14,6 @@ class Pokemon:
         self.species = species
         self.level = level
         self.trainer = trainer
-
-    def __repr__(self):
-        return f"{self.nickname}"
     
     def details(self):
         return (f"{self.nickname} the {self.species}. Level {self.level}")

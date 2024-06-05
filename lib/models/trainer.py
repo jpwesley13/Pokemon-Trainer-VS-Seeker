@@ -9,9 +9,6 @@ class Trainer:
         self.name  = name
         self.hometown = hometown
         self.badges = badges
-
-    def __repr__(self):
-        return f"{self.name}"
     
     def details(self):
         return f"{self.name} from {self.hometown}. Currently has {self.badges} badge(s) and {len(self.pokemons())} Pokemon!"

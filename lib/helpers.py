@@ -12,7 +12,7 @@ def all_trainers():
     print("\nRegistered Trainers:")
     print("============\n")
     for index, trainer in enumerate(trainers, start=1):
-        print(f"{index}. {trainer}")
+        print(f"{index}. {trainer.name}")
     print("\n============")
     return trainers
 
@@ -23,7 +23,7 @@ def trainer_details(id_):
     print(f"\n{trainer.name}'s Pokemon:")
     print("============\n")
     for index, pokemon in enumerate(pokemons, start = 1):
-        print(f"{index}. {pokemon}")
+        print(f"{index}. {pokemon.nickname}")
     print("\n============")
     return pokemons
 
