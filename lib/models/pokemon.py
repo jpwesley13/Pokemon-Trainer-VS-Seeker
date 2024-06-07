@@ -14,9 +14,6 @@ class Pokemon:
         self.species = species
         self.level = level
         self.trainer = trainer
-    
-    def details(self):
-        return (f"{self.name} the {self.species}. Level {self.level}")
 
     @property
     def name(self):

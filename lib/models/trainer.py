@@ -10,9 +10,6 @@ class Trainer:
         self.hometown = hometown
         self.badges = badges
     
-    def details(self):
-        return f"{self.name} from {self.hometown}. Currently has {self.badges} badge(s) and {len(self.pokemons())} Pokemon!"
-    
     @property
     def name(self):
         return self._name 

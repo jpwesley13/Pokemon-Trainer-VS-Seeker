@@ -53,7 +53,10 @@ def all_trainers():
 def trainer_details(id_):
     trainer = Trainer.find_by_id(id_)
     pokemons = trainer.pokemons()
-    print(trainer.details()) 
+    print(
+        f"{trainer.name} from {trainer.hometown}. Currently has {trainer.badges}"
+        f" badge(s) and {len(trainer.pokemons())} Pokemon!"
+        ) 
     print(f"\n{trainer.name}'s Pokemon:")
     list_members(pokemons)
     return pokemons
@@ -118,7 +121,7 @@ def new_pokemon(trainer_id):
     level = level_validation()
     trainer = Trainer.find_by_id(trainer_id)
     try:
-        pokemon = Pokemon.create(name, species, level, trainer_id)
+        Pokemon.create(name, species, level, trainer_id)
         print("------------")
         print(f"{trainer.name} caught {name} the {species}!")
         print("------------")
@@ -146,7 +149,7 @@ def pokemon_details(id_):
     trainer = Trainer.find_by_id(pokemon.trainer)
     print(f"{trainer.name} has caught this Pokemon: ")
     print("------------")
-    print(pokemon.details())
+    print(f"{pokemon.name} the {pokemon.species}. Level {pokemon.level}")
     print("------------")
 
 def update_pokemon(id_):
