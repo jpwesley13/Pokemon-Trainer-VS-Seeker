@@ -50,8 +50,7 @@ def all_trainers():
     list_members(trainers)
     return trainers
 
-def trainer_details(id_):
-    trainer = Trainer.find_by_id(id_)
+def trainer_details(trainer):
     pokemons = trainer.pokemons()
     print(
         f"{trainer.name} from {trainer.hometown}. Currently has {trainer.badges}"
@@ -61,8 +60,7 @@ def trainer_details(id_):
     list_members(pokemons)
     return pokemons
 
-def trainer_pokemon(id_):
-    trainer = Trainer.find_by_id(id_)
+def trainer_pokemon(trainer):
     pokemons = trainer.pokemons()
     return pokemons
 
@@ -92,8 +90,7 @@ def badge_validation(badge=None):
             pass
     return badge
 
-def update_trainer(id_):
-    trainer = Trainer.find_by_id(id_)
+def update_trainer(trainer):
     try:
         name = input("Enter the trainer's new name: ")
         badges = input("Enter the trainer's new badge count: ")
@@ -107,21 +104,19 @@ def update_trainer(id_):
     except Exception as exc:
         print("Error updtating trainer: ", exc)
 
-def delete_trainer(id_):
-    trainer = Trainer.find_by_id(id_)
+def delete_trainer(trainer):
     pokemons = trainer.pokemons()
     for pokemon in pokemons:
         pokemon.delete()
     trainer.delete()
     print(f"\n{trainer.name} removed from VS Seeker!")
 
-def new_pokemon(trainer_id):
+def new_pokemon(trainer):
     name = input("Enter the Pokemon's nickname: ")
     species = input("Enter the Pokemon's species: ")
     level = level_validation()
-    trainer = Trainer.find_by_id(trainer_id)
     try:
-        Pokemon.create(name, species, level, trainer_id)
+        Pokemon.create(name, species, level, trainer.id)
         print("------------")
         print(f"{trainer.name} caught {name} the {species}!")
         print("------------")
@@ -144,16 +139,13 @@ def level_validation(level=None):
             pass
     return level
 
-def pokemon_details(id_):
-    pokemon = Pokemon.find_by_id(id_)
-    trainer = Trainer.find_by_id(pokemon.trainer)
+def pokemon_details(pokemon, trainer):
     print(f"{trainer.name} has caught this Pokemon: ")
     print("------------")
     print(f"{pokemon.name} the {pokemon.species}. Level {pokemon.level}")
     print("------------")
 
-def update_pokemon(id_):
-    pokemon = Pokemon.find_by_id(id_)
+def update_pokemon(pokemon):
     try:
 
         name = input("Enter the Pokemon's new nickname: ")
@@ -171,7 +163,6 @@ def update_pokemon(id_):
     except Exception as exc:
         print("Error updtating Pokemon: ", exc)
 
-def release_pokemon(id_):
-    pokemon = Pokemon.find_by_id(id_)
+def release_pokemon(pokemon):
     pokemon.delete()
     print(f"\n{pokemon.name} was released back into the wild!\n")

@@ -43,7 +43,7 @@ def trainers_menu():
             if trainer_num > 0 and trainer_num <= len(trainers):
                 trainer = trainers[trainer_num - 1]
                 print()
-                trainer_details_menu(trainer.id)
+                trainer_details_menu(trainer)
             else:
                 print("Invalid trainer ID")
         elif choice.lower() == "n":
@@ -55,27 +55,27 @@ def trainers_menu():
         else:
             print("Invalid choice")
 
-def trainer_details_menu(id_):
+def trainer_details_menu(trainer):
     while True:
-        trainer_details(id_)
+        trainer_details(trainer)
         sub_menu_trainer()
 
         choice = input("> ")
         if choice.isdigit():
             pokemon_id = int(choice)
-            pokemons = trainer_pokemon(id_)
+            pokemons = trainer_pokemon(trainer)
             if pokemon_id > 0 and pokemon_id <= len(pokemons):
                 pokemon = pokemons[pokemon_id - 1]
                 print()
-                pokemon_details_menu(pokemon.id)
+                pokemon_details_menu(pokemon, trainer)
             else:
                 print("Invalid Pokemon ID")
         elif choice.lower() == "n":
-            new_pokemon(id_)
+            new_pokemon(trainer)
         elif choice.lower() == "u":
-            update_trainer(id_)
+            update_trainer(trainer)
         elif choice.lower() == "d":
-            delete_trainer(id_)
+            delete_trainer(trainer)
             return
         elif choice.lower() == "b":
             return
@@ -84,16 +84,16 @@ def trainer_details_menu(id_):
         else:
             print("Invalid choice")
 
-def pokemon_details_menu(pokemon_id):
+def pokemon_details_menu(pokemon, trainer):
     while True:
-        pokemon_details(pokemon_id)
+        pokemon_details(pokemon, trainer)
         sub_menu_pokemon()
 
         choice = input("> ")
         if choice.lower() == "u":
-            update_pokemon(pokemon_id)
+            update_pokemon(pokemon)
         elif choice.lower() == "r":
-            release_pokemon(pokemon_id)
+            release_pokemon(pokemon)
             return
         elif choice.lower() == "b":
             return
