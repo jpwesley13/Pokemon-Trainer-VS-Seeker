@@ -29,7 +29,6 @@ def sub_menu_pokemon():
     print("  R. Release this Pokemon back into the wild")
     universal_menu()
 
-
 def universal_menu():
     print("  B. Back to previous menu")
     print("  E. Exit VS Seeker")
@@ -70,7 +69,7 @@ def register_trainer():
     badges = badge_validation()
     try:
         trainer = Trainer.create(name, hometown, badges)
-        print(f"\n{trainer} registered to the VS Seeker!")
+        print(f"\n{trainer.name} registered to the VS Seeker!")
         return True
     except Exception as exc:
         print("Error registering trainer: ", exc)
@@ -107,7 +106,6 @@ def update_trainer(id_):
 
 def delete_trainer(id_):
     trainer = Trainer.find_by_id(id_)
-    print(trainer)
     pokemons = trainer.pokemons()
     for pokemon in pokemons:
         pokemon.delete()
@@ -119,12 +117,11 @@ def new_pokemon(trainer_id):
     species = input("Enter the Pokemon's species: ")
     level = level_validation()
     trainer = Trainer.find_by_id(trainer_id)
-    trainer_name = trainer.name
     try:
         pokemon = Pokemon.create(name, species, level, trainer_id)
-        print("============\n")
-        print(f"{trainer_name} caught {pokemon} the {species}!")
-        print("\n============")
+        print("------------")
+        print(f"{trainer.name} caught {name} the {species}!")
+        print("------------")
         return True
     except Exception as exc:
         print("Error adding new Pokemon: ", exc)
