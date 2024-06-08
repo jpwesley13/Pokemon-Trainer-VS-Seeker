@@ -69,8 +69,8 @@ def register_trainer():
     hometown = input("Enter the trainer's hometown: ")
     badges = badge_validation()
     try:
-        trainer = Trainer.create(name, hometown, badges)
-        print(f"\n{trainer.name} registered to the VS Seeker!")
+        Trainer.create(name, hometown, badges)
+        print(f"\n{name} registered to the VS Seeker!")
         return True
     except Exception as exc:
         print("Error registering trainer: ", exc)
