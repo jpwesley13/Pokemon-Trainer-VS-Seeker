@@ -71,10 +71,8 @@ def register_trainer():
     try:
         Trainer.create(name, hometown, badges)
         print(f"\n{name} registered to the VS Seeker!")
-        return True
     except Exception as exc:
         print("Error registering trainer: ", exc)
-        return False
 
 def badge_validation(badge=None):
     if badge is not None:
@@ -120,10 +118,8 @@ def new_pokemon(trainer):
         print("------------")
         print(f"{trainer.name} caught {name} the {species}!")
         print("------------")
-        return True
     except Exception as exc:
         print("Error adding new Pokemon: ", exc)
-        return False
 
 def level_validation(level=None):
     if level is not None:
