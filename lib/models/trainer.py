@@ -138,7 +138,7 @@ class Trainer:
         sql = """
             SELECT *
             FROM pokemons
-            WHERE trainer = ?
+            WHERE trainer_id = ?
         """
         CURSOR.execute(sql, (self.id,),)
         rows = CURSOR.fetchall()

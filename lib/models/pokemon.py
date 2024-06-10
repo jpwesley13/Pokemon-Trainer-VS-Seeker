@@ -8,12 +8,12 @@ with open("lib/kanto.json") as file:
 class Pokemon:
     all = {}
 
-    def __init__(self, name, species, level, trainer, id=None):
+    def __init__(self, name, species, level, trainer_id, id=None):
         self.id = id
         self.name = name
         self.species = species
         self.level = level
-        self.trainer = trainer
+        self.trainer_id = trainer_id
 
     @property
     def name(self):
@@ -50,13 +50,13 @@ class Pokemon:
             raise ValueError("Please enter an integer between 1 and 100 for the Pokemon's level\n")
         
     @property
-    def trainer(self):
-        return self._trainer
+    def trainer_id(self):
+        return self._trainer_id
     
-    @trainer.setter
-    def trainer(self, trainer):
-        if type(trainer) is int and Trainer.find_by_id(trainer):
-            self._trainer = trainer
+    @trainer_id.setter
+    def trainer_id(self, trainer_id):
+        if type(trainer_id) is int and Trainer.find_by_id(trainer_id):
+            self._trainer_id = trainer_id
         else:
             raise ValueError("trainer must reference an existing Trainer ID in the database\n")
         
@@ -68,8 +68,8 @@ class Pokemon:
             name TEXT,
             species TEXT,
             level INTEGER,
-            trainer INTEGER,
-            FOREIGN KEY (trainer) REFERENCES trainers(id))
+            trainer_id INTEGER,
+            FOREIGN KEY (trainer_id) REFERENCES trainers(id))
         """
         CURSOR.execute(sql)
         CONN.commit()
@@ -84,10 +84,10 @@ class Pokemon:
 
     def save(self):
         sql = """
-            INSERT INTO pokemons (name, species, level, trainer)
+            INSERT INTO pokemons (name, species, level, trainer_id)
             VALUES (?, ?, ?, ?)
         """
-        CURSOR.execute(sql, (self.name, self.species, self.level, self.trainer))
+        CURSOR.execute(sql, (self.name, self.species, self.level, self.trainer_id))
         CONN.commit()
         self.id = CURSOR.lastrowid
         type(self).all[self.id] = self
@@ -112,8 +112,8 @@ class Pokemon:
         self.id = None
 
     @classmethod
-    def create(cls, name, species, level, trainer):
-        pokemon = cls(name, species, level, trainer)
+    def create(cls, name, species, level, trainer_id):
+        pokemon = cls(name, species, level, trainer_id)
         pokemon.save()
         return pokemon
     
@@ -124,7 +124,7 @@ class Pokemon:
             pokemon.name = row[1]
             pokemon.species = row[2]
             pokemon.level = row[3]
-            pokemon.trainer = row[4]
+            pokemon.trainer_id = row[4]
         else:
             pokemon = cls(row[1], row[2], row[3], row[4])
             pokemon.id = row[0]
