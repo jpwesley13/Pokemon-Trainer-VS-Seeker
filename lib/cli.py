@@ -9,7 +9,6 @@ from helpers import (
     all_trainers,
     register_trainer,
     trainer_details,
-    trainer_pokemon,
     delete_trainer,
     update_trainer,
     new_pokemon,
@@ -57,13 +56,12 @@ def trainers_menu():
 
 def trainer_details_menu(trainer):
     while True:
-        trainer_details(trainer)
+        pokemons = trainer_details(trainer)
         sub_menu_trainer()
 
         choice = input("> ")
         if choice.isdigit():
             pokemon_id = int(choice)
-            pokemons = trainer_pokemon(trainer)
             if pokemon_id > 0 and pokemon_id <= len(pokemons):
                 pokemon = pokemons[pokemon_id - 1]
                 print()

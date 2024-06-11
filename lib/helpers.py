@@ -60,10 +60,6 @@ def trainer_details(trainer):
     list_members(pokemons)
     return pokemons
 
-def trainer_pokemon(trainer):
-    pokemons = trainer.pokemons()
-    return pokemons
-
 def register_trainer():
     name = input("Enter the trainer's name: ")
     hometown = input("Enter the trainer's hometown: ")
